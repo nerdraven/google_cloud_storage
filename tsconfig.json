@@ -1,0 +1,62 @@
+{
+    "compilerOptions": {
+        "rootDirs": [
+            ".",
+            // Ensure that the relative paths in types produced by bazel get turned into
+            "bazel-out/darwin-fastbuild/bin",
+            "bazel-out/k8-fastbuild/bin",
+            "bazel-out/x64_windows-fastbuild/bin",
+            "bazel-out/darwin-dbg/bin",
+            "bazel-out/k8-dbg/bin",
+            "bazel-out/x64_windows-dbg/bin",
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@closera/*": [
+                "lib/*",
+                "*",
+                "bazel-bin/*",
+                "bazel-genfiles/*",
+                // Bazel generates the .d.ts files in the bazel-out directory, so we
+                // need to tell TypeScript that it might be able to find them there.
+                //
+                // This hack was inspired by formatjs:
+                // https://github.com/formatjs/formatjs/blob/268d6aef6fc08180a0be691b631eb1cdfb68ca31/tsconfig.json#L19-L41
+                // And the rootDirs note in the docs here:
+                // https://bazelbuild.github.io/rules_nodejs/TypeScript.html#ts_project
+                "bazel-out/darwin-fastbuild/bin/*",
+                "bazel-out/k8-fastbuild/bin/*",
+                "bazel-out/x64_windows-fastbuild/bin/*",
+                "bazel-out/darwin-dbg/bin/*",
+                "bazel-out/k8-dbg/bin/*",
+                "bazel-out/x64_windows-dbg/bin/*",
+            ]
+        },
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "preserveConstEnums": true,
+        "strict": true,
+        "removeComments": true,
+        "target": "es2017",
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "jsx": "react",
+        "types": [
+            "node",
+            "jest"
+        ],
+        "lib": [
+            "es2019",
+            "dom"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
+    },
+    "exclude": [
+        "bazel-*",
+        "node_modules"
+    ]
+}
